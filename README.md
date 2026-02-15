@@ -85,13 +85,13 @@ python3 hass-uart.py sendmsg --dst 0x123456 --cmd 0x40 --payload "01020304" --hd
 
 ```
 Options:
-`--src` (default `0x000000`)
-`--dst` (required)
-`--cmd` (required)
-`--payload` hex string (optional)
-`--hdr-hi`/`--hdr-lo` (optional)
-`--response-window` seconds to listen for a reply message
-`--filter-reply` to show only direct replies
+- `--src` (default `0x000000`)
+- `--dst` (required)
+- `--cmd` (required)
+- `--payload` hex string (optional)
+- `--hdr-hi`/`--hdr-lo` (optional)
+- `--response-window` seconds to listen for a reply message
+- `--filter-reply` to show only direct replies
 
 `eraseflash`
 Sends the fixed-range erase command.
@@ -100,10 +100,10 @@ This implementation deliberately uses empty payload because the device firmware 
 python3 hass-uart.py eraseflash --dst 0x123456
 ```
 Options:
-`--cmd` (default `0x20`)
-`--hdr-hi`/`--hdr-lo`
-`--response-window`
-`--filter-reply`
+- `--cmd` (default `0x20`)
+- `--hdr-hi`/`--hdr-lo`
+- `--response-window`
+- `--filter-reply`
 
 `writeflash`
 Streams a firmware file to flash:
@@ -115,12 +115,12 @@ python3 hass-uart.py writeflash --dst 0x123456 firmware.bin --compress --progres
 
 ```
 Common options:
-`--no-erase` : skip erase
-`--compress` : enable compression (recommended if your device expects compressed payloads)
-`--chunk-len` : payload size per frame (default 256, max 768)
-`--seq-start` : starting sequence nibble (default 1)
-`--retries`/`retry-delay` : retry behavior on NAK/timeouts
-`--filter-reply` : only accept direct replies
+- `--no-erase` : skip erase
+- `--compress` : enable compression (recommended if your device expects compressed payloads)
+- `--chunk-len` : payload size per frame (default 256, max 768)
+- `--seq-start` : starting sequence nibble (default 1)
+- `--retries`/`retry-delay` : retry behavior on NAK/timeouts
+- `--filter-reply` : only accept direct replies
 ACK/NAK behavior:
 - ACK payload byte `0x06` indicates success
 - ACK payload byte `0x15` indicates sequence error/retry
@@ -138,21 +138,21 @@ python3 hass-uart.py verifyflash --dst 0x123456 firmware.bin
 ```
 
 Options:
-`--cmd` (default `0x50`)
-`--reserved` (8 hex chars, optional)
-`--filter-reply`
+- `--cmd` (default `0x50`)
+- `--reserved` (8 hex chars, optional)
+- `--filter-reply`
 
 Expected responses:
-`0x06` = verify OK
-`0x19` = verify failed (mismatch)
+- `0x06` = verify OK
+- `0x19` = verify failed (mismatch)
 
 # Compression Format (B4-LZ)
 
 When `--compress` is enabled, the tool uses a byte-oriented scheme compatible with the firmware’s decoder:
 
-Literal byte `X` (`X != 0xB4`) → emit `X`
-Literal `0xB4` → emit `0xB4 0x00`
-Backref → emit `0xB4 <offset:1..255> <count:1..255>`
+- Literal byte `X` (`X != 0xB4`) → emit `X`
+- Literal `0xB4` → emit `0xB4 0x00`
+- Backref → emit `0xB4 <offset:1..255> <count:1..255>`
 
 The device maintains a 256-byte rolling history buffer and for backrefs copies:
 
