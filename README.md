@@ -71,14 +71,14 @@ To ignore unrelated bus traffic and only show direct replies (matching ```src=ds
 
 # Commands
 
-`logmsg`
+## `logmsg`
 Continuously reads /dev/ttyUSB0, parses valid frames, and prints them.
 ```
 python3 hass-uart.py logmsg --port /dev/ttyUSB0
 
 ```
 
-`sendmsg`
+## `sendmsg`
 Builds a frame from SRC/DST/CMD/PAYLOAD + HDR nibbles, sends it, then prints any valid response frames.
 ```
 python3 hass-uart.py sendmsg --dst 0x123456 --cmd 0x40 --payload "01020304" --hdr-lo 2
@@ -93,7 +93,7 @@ Options:
 - `--response-window` seconds to listen for a reply message
 - `--filter-reply` to show only direct replies
 
-`eraseflash`
+## `eraseflash`
 Sends the fixed-range erase command.
 This implementation deliberately uses empty payload because the device firmware performs an internal fixed erase range (e.g., starting at 0x4000 through its programmed region).
 ```
@@ -105,7 +105,7 @@ Options:
 - `--response-window`
 - `--filter-reply`
 
-`writeflash`
+## `writeflash`
 Streams a firmware file to flash:
 1. (optional) send erase (cmd 0x20)
 2. (optional) compress file using the firmware’s decoder-compatible scheme
@@ -125,7 +125,7 @@ ACK/NAK behavior:
 - ACK payload byte `0x06` indicates success
 - ACK payload byte `0x15` indicates sequence error/retry
 
-`verifyflash`
+## `verifyflash`
 Computes CRC16-CCITT from a local `.bin` file and sends a verify request
 
 Payload laout:
