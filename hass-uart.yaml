@@ -1,0 +1,15 @@
+
+---
+
+## Install
+
+### Requirements
+
+- Python 3.9+ recommended
+- `pyserial`
+
+Install dependencies:
+
+```bash
+python3 -m pip install pyserial
+
