@@ -166,7 +166,7 @@ If multiple devices share the UART bus, use --filter-reply on commands to focus 
 If you don’t know the destination address yet, sniff with logmsg first and identify the target node.
 If you see no replies, confirm:
 - stop bits 2 (8N2)
-- baud 125000
+- baud 115200
 - TX/RX swapped correctly
 - shared ground
 - your adapter supports non-standard baud rates cleanly
