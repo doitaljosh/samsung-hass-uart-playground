@@ -1,6 +1,6 @@
 ### Samsung HASS UART bus playground
 
-A small Python command-line tool for talking to Samsung appliance boards over the HASS UART protocol at **125000 baud, 8N2**. It supports:
+A small Python command-line tool for talking to Samsung appliance boards over the HASS UART protocol at **115200 baud, 8N2**. It supports:
 
 - Live bus logging with frame parsing + CRC validation
 - Sending a single framed message and printing responses
